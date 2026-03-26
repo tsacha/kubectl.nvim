@@ -90,7 +90,8 @@ function M.Desc(name, ns)
     display_name = M.definition.resource .. " | " .. name .. " | " .. ns,
     ft = "k8s_desc",
     syntax = "yaml",
-    args = { "status", name, "-n", ns, "--show-desc" },
+    -- Helm 4 removed --show-desc; default status output still includes the release description.
+    args = { "status", name, "-n", ns },
   }
 
   local builder = manager.get_or_create(def.resource)
