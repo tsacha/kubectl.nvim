@@ -115,7 +115,8 @@ function M.Yaml(name, ns)
     display_name = M.definition.resource .. " | " .. name .. " | " .. ns,
     ft = "k8s_yaml",
     syntax = "yaml",
-    args = { "get", "manifest", name },
+    -- Namespace required when the same release name exists in more than one namespace.
+    args = { "get", "manifest", name, "-n", ns },
   }
 
   local builder = manager.get_or_create(def.resource)
