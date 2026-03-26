@@ -224,6 +224,9 @@ function M.download_if_available(callback)
   local root_dir = vim.fn.resolve(debug.getinfo(1).source:match("@?(.*/)") .. "../../")
 
   downloader.ensure_downloaded({
+    -- branch installs are not on a git tag; blink.download would otherwise skip the fetch.
+    -- Pin to the release whose sources this tree matches (see tag v2.41.4).
+    force_version = "v2.41.4",
     -- omit this property to disable downloading
     -- i.e. https://github.com/Saghen/blink.delimiters/releases/download/v0.1.0/x86_64-unknown-linux-gnu.so
     download_url = function(version, system_triple, extension)
