@@ -131,7 +131,7 @@ function M.Yaml(name, ns)
     display_name = M.definition.resource .. " | " .. name .. " | " .. ns,
     ft = "k8s_yaml",
     syntax = "yaml",
-    args = { "get", "manifest", name, "-n", ns },
+    args = { "get", "manifest" },
   }
 
   local builder = manager.get_or_create(def.resource)
